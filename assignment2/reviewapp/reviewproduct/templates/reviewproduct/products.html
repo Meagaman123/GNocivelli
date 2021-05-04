@@ -1,9 +1,20 @@
+{% extends "reviewproduct/base.html" %}
 <!DOCTYPE html>
+{% block content %}
 <html>
+ 
+
     <head>
             <title>Product Review - Products </title>
     </head>
     <body>
         <h1>Welcome to a Technology Review Service - Product review page</h1>
     </body>
+    <h1>Product Review</h1>
+        {% for review in reviews %} 
+            <h3>{{issue.type}} in {{issue.room}}</h3>
+            <h4>Review by {{Review.name}} on {{review.Date}}</h4>
+    <hr>
+    {% endfor %}
+{% endblock content %}
 </html>

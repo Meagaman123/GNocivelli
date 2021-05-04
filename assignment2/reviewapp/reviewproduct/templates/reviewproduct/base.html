@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        {% if title %}
+        <title>SHU Product Review - {{title}}</title>
+        {% else %}
+        <title>SHU Product Review</title>
+        {% endif %}
+    </head>
+    <body>
+        {%block content %}{% endblock %}
+    </body>
+</html>
