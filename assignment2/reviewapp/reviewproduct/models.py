@@ -16,6 +16,8 @@ class product(models.Model):
     photo_of_product=models.ImageField()
 
 class profile(models.Model):
+    username=models.CharField(max_length=100)
+    password=models.CharField(max_length=100)
     name=models.CharField(max_length=100)
     dateofbirth=models.DateTimeField()
     address=models.CharField(max_length=100)
