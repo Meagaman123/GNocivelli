@@ -1,11 +1,10 @@
 from django.shortcuts import render
-from django.http import HttpResponse
 
 def home(request):
-    return HttpResponse('<h1> Review Product - Home</h1>')
+    return render(request, 'reviewproduct/home.html')
 def about (request):
-    return HttpResponse('<h1> Review Product - About Us</h1>')
+    return render(request, 'reviewproduct/about.html')
 def contact (request):
-        return HttpResponse('<h1> Review Product - About Us</h1>')
+        return render(request, 'reviewproduct/contact.html')
 def products (request):
-        return HttpResponse('<h1> Review Product - About Us</h1>')
+        return render(request, 'reviewproduct/products.html')
