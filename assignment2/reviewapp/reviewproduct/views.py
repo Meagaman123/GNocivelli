@@ -7,6 +7,9 @@ def about (request):
 def contact (request):
         return render(request, 'reviewproduct/contact.html', {'title': 'Contact'})
 def products (request):
-        return render(request, 'reviewproduct/products.html', {'title': 'Procusts'})
+        products={
+            'products': products.objects.all()
+        }
+        return render(request, 'reviewproduct/products.html', {'title': 'Procucts'})
 
 

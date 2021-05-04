@@ -3,10 +3,14 @@ from django.utils import timezone
 from django.contrib.auth.models import User
 
 class product(models.Model):
+    category_of_tech = (('Phone' , 'Phone'),
+    ('CPU', 'CPU'),
+    ('GPU', 'Graphics Card'),
+    ('other', 'other'))
     name=models.CharField(max_length=100)
     brand=models.CharField(max_length=100)
     cost=models.DecimalField(max_digits=20, decimal_places=2)
-    category=models.CharField(max_length=100)
+    category=models.CharField(max_length=100, choices=category_of_tech)
     release=models.DateTimeField()
     description=models.TextField()
     photo_of_product=models.ImageField()
