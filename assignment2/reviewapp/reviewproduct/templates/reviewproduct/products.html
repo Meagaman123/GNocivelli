@@ -8,29 +8,60 @@
             <title>Product Review - Products </title>
     </head>
     <body>
-        <h1>Welcome to a Technology Review Service - Product review page</h1>
+        <h1>Welcome to a Technology Review Service - Products page</h1>
     </body>
-    <h1>Product Review</h1>
-        {% for review in reviews %} 
-        <article class="media content-section">
-
+    <h1>Products</h1>
+            <article class="media content-section">
             <div class="media-body">
           
               <div class="article-metadata">
           
-                <a class="mr-2" href="#">{{ Student Name }} ({{Course}})</a>
+                <a class="mr-2" href=""></a>
           
-                <small class="text-muted">{{ Date Reported}}</small>
+                <small class="text-muted">GPU Price $699.99</small>
           
               </div>
           
-              <h2><a class="article-title" href="#">{{ The Issue Type  }} in {{issue.room}}</a></h2>
+              <h2><a class="article-title" href="{% url 'reviewProduct-gtx3080' %}">GTX 3080 by NVIDIA</a></h2>
           
-              <p class="article-content">{{ The Details }}</p>
+              <p class="article-content">This is the latest graphics card by NVIDIA. featuring the latest in rtx software</p>
+          
+            </div>
+          </article>
+            <article class="media content-section">
+            <div class="media-body">
+          
+              <div class="article-metadata">
+          
+                <a class="mr-2" href=""></a>
+          
+                <small class="text-muted">CPU Price $449.99</small>
+          
+              </div>
+          
+              <h2><a class="article-title" href="{% url 'reviewProduct-ryzen9' %}">ARYZEN 9 5800X by AMD</a></h2>
+          
+              <p class="article-content">This is the latest CPU by AMD. Featuring the ampure 5 architecture with 12 cores and 24 threaded cores its the best price to performance cpu on the market.</p>
+          
+            </div>
+          </article>
+          <article class="media content-section">
+            <div class="media-body">
+          
+              <div class="article-metadata">
+          
+                <a class="mr-2" href=""></a>
+          
+                <small class="text-muted">Phone Price $1149.99</small>
+          
+              </div>
+          
+              <h2><a class="article-title" href="{% url 'reviewProduct-IphoneX' %}">Iphone X by Apple</a></h2>
+          
+              <p class="article-content">This is the latest CPU by AMD. Featuring the ampure 5 architecture with 12 cores and 24 threaded cores its the best price to performance cpu on the market.</p>
           
             </div>
           
           </article>
-    {% endfor %}
 {% endblock content %}
 </html>

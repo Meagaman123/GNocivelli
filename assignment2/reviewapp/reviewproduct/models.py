@@ -2,7 +2,7 @@ from django.db import models
 from django.utils import timezone
 from django.contrib.auth.models import User
 
-class product(models.Model):
+class Product(models.Model):
     category_of_tech = (('Phone' , 'Phone'),
     ('CPU', 'CPU'),
     ('GPU', 'Graphics Card'),
@@ -15,9 +15,7 @@ class product(models.Model):
     description=models.TextField()
     photo_of_product=models.ImageField()
 
-class profile(models.Model):
-    username=models.CharField(max_length=100)
-    password=models.CharField(max_length=100)
+class Profile(models.Model):
     name=models.CharField(max_length=100)
     dateofbirth=models.DateTimeField()
     address=models.CharField(max_length=100)
@@ -25,7 +23,7 @@ class profile(models.Model):
     country=models.CharField(max_length=100)
     profile_picture= models.ImageField()
 
-class review(models.Model):
+class Review(models.Model):
     author=models.CharField(max_length=100)
     product_rating=models.IntegerField(choices=list(zip(range(1,11), range(1,11))))
     review_text=models.TextField()
