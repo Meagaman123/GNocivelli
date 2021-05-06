@@ -1,6 +1,6 @@
 from django.urls import path
 from . import views
-from .views import PostDetailView, PostListView
+from .views import PostDetailView, PostListView , PostCreateView
 
 urlpatterns = [
     path ('', views.home, name='reviewproduct-home'),

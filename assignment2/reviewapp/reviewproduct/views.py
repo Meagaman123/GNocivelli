@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from .models import Review
-from django.views.generic import ListView, DetailView
+from django.views.generic import ListView, DetailView , CreateView
 
 class PostListView(ListView):
         model = Review
@@ -12,9 +12,12 @@ class PostDetailView(DetailView):
         model = Review
 
 class PostCreateView(CreateView):
-        model = Issue
+        def form_valid(self, form):
+                form.instance.author = self.request.user
+                return super().form_valid(form)
+        model = Review
+        fields = ['product', 'product_rating', 'review_text', 'Date_review']
 
-        fields = ['type', 'room', 'details']
 
 def home(request):
     return render(request, 'reviewproduct/home.html', {'title': 'Home'})
