@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from .models import Review
 
 def home(request):
     return render(request, 'reviewproduct/home.html', {'title': 'Home'})
@@ -9,10 +10,21 @@ def contact (request):
 def products (request):
         return render(request, 'reviewproduct/products.html', {'title': 'Products'})
 def IphoneX (request):
-        return render(request, 'reviewproduct/IphoneX.html', {'title': 'IphoneX'})
+        all_reviews = {
+            'reviews': Review.objects.all()
+        }
+        return render(request, 'reviewproduct/IphoneX.html', all_reviews)
 def ryzen9 (request):
-        return render(request, 'reviewproduct/ryzen9.html', {'title': 'ryzen9 3800x'})
+        all_reviews = {
+            'reviews': Review.objects.all()
+        } 
+        return render(request, 'reviewproduct/ryzen9.html', all_reviews)
+
 def gtx3080 (request):
-        return render(request, 'reviewproduct/gtx3080.html', {'title': 'gtx3080'})
+        all_reviews = {
+            'reviews': Review.objects.all()
+        }
+ 
+        return render(request, 'reviewproduct/gtx3080.html',  all_reviews)
 
 
