@@ -1,5 +1,20 @@
 from django.shortcuts import render
 from .models import Review
+from django.views.generic import ListView, DetailView
+
+class PostListView(ListView):
+        model = Review
+        template_name = 'itreporting/products.html'
+        context_object_name = 'reviews'
+        ordering = ['-date_submitted']
+
+class PostDetailView(DetailView):
+        model = Review
+
+class PostCreateView(CreateView):
+        model = Issue
+
+        fields = ['type', 'room', 'details']
 
 def home(request):
     return render(request, 'reviewproduct/home.html', {'title': 'Home'})
