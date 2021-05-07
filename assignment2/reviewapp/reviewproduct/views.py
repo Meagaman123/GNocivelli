@@ -1,6 +1,17 @@
 from django.shortcuts import render
 from .models import Review
-from django.views.generic import ListView, DetailView , CreateView
+from django.views.generic import ListView, DetailView , CreateView, UpdateView
+from django.urls import reverse
+from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
+
+class PostUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
+        def test_func(self):
+                review = self.get_object()
+                if self.request.user == review.author:
+                        return True
+                return False
+        model = Review
+        fields = ['product_rating', 'review_text', 'Date_review']
 
 class PostListView(ListView):
         model = Review
@@ -11,7 +22,7 @@ class PostListView(ListView):
 class PostDetailView(DetailView):
         model = Review
 
-class PostCreateView(CreateView):
+class PostCreateView(LoginRequiredMixin, CreateView):
         def form_valid(self, form):
                 form.instance.author = self.request.user
                 return super().form_valid(form)
