@@ -3,6 +3,7 @@ from django.utils import timezone
 from django.contrib.auth.models import User
 from django.urls import reverse
 
+
 class Product(models.Model):
     category_of_tech = (('Phone' , 'Phone'),
     ('CPU', 'CPU'),
@@ -33,8 +34,6 @@ class Review(models.Model):
     product_rating=models.IntegerField(choices=list(zip(range(1,11), range(1,11))))
     review_text=models.TextField()
     Date_review=models.DateTimeField(default=timezone.now)
-    def __str__(self):
-        return self.type
     def get_absolute_url(self):
         return reverse('review-review_text', kwargs={'pk': self.pk})
 

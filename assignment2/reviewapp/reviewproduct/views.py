@@ -1,9 +1,19 @@
 from django.shortcuts import render
 from .models import Review
-from django.views.generic import ListView, DetailView , CreateView, UpdateView
+from django.views.generic import ListView, DetailView , CreateView, UpdateView, DeleteView
 from django.urls import reverse
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 
+class PostDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
+        model = Review
+
+        success_url= '/products'
+        def test_func(self):
+                review = self.get_object()
+                if self.request.user == review.author:
+                        return True
+                return False
+        
 class PostUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
         def test_func(self):
                 review = self.get_object()
@@ -13,11 +23,26 @@ class PostUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
         model = Review
         fields = ['product_rating', 'review_text', 'Date_review']
 
-class PostListView(ListView):
+class PostListViewryzen(ListView):
+        paginate_by = 5
         model = Review
-        template_name = 'itreporting/products.html'
+        template_name = 'reviewproduct/ryzen9.html'
         context_object_name = 'reviews'
-        ordering = ['-date_submitted']
+        ordering = ['-Date_review']
+
+class PostListView3080(ListView):
+        paginate_by = 5
+        model = Review
+        template_name = 'reviewproduct/gtx3080.html'
+        context_object_name = 'reviews'
+        ordering = ['-Date_review']
+
+class PostListViewiphoneX(ListView):
+        paginate_by = 5
+        model = Review
+        template_name = 'reviewproduct/IphoneX.html'
+        context_object_name = 'reviews'
+        ordering = ['-Date_review']
 
 class PostDetailView(DetailView):
         model = Review
