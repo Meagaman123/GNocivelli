@@ -1,0 +1,39 @@
+{% extends "reviewproduct/base.html" %}
+<!DOCTYPE html>
+{% block content %}
+<html>
+ 
+
+    <head>
+            <title>Product Review - Products </title>
+    </head>
+    <body>
+        <h1>Welcome to a Technology Review Service</h1>
+    </body>
+    <h1>Review</h1>
+    
+    <article class="media content-section">
+      <img class = "rounded-circle article-img" src="{{review.author.Profile.profile_picture}}"/>
+      <div class="media-body">
+    
+        <div class="article-metadata">
+          
+          <a class="mr-2" href="">This review is by {{object.author}}</a>
+    
+          <small class="text-muted">on {{object.Date_review}}</small>
+    
+        </div>
+    
+        <h2><a class="article-title">{{object.product_rating}}/10</a></h2>
+    
+        <p class="article-content">{{object.review_text }}</p>
+    
+      </div>
+    
+    </article>
+    {% if object.author == user %}
+    <a class="btn btn-secondary btn-sm mt-1 mb-1" href="{% url 'review-update' object.id %}"> Update</a>
+    <a class="btn btn-secondary btn-sm mt-1 mb-1" href="{% url 'review-delete' object.id %}"> Delete</a>
+    {% endif %}
+{% endblock content %}
+</html>

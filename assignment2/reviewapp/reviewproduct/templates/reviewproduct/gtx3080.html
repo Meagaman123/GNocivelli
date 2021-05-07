@@ -1,0 +1,60 @@
+{% extends "reviewproduct/base.html" %}
+{% block content %} 
+<head>
+    <title>Product Review - RTX 3080 </title>
+</head>
+<body>
+    <h1>Product review - RTX 3080</h1>
+</body>
+
+<h2>Price: </h2>
+<h2>Category: </h2>
+<h2>Release date: </h2>
+<h2>Description: </h2>
+<h1>Reviews: </h1>
+{% for review in reviews %}
+{% if review.product.name == "rtx3080" %}
+
+<article class="media content-section">
+  <img class = "rounded-circle article-img" src="{{review.author.Profile.profile_picture}}"/>
+  <div class="media-body">
+
+    <div class="article-metadata">
+      
+      <a class="mr-2" href="">This review is by {{review.author}}</a>
+
+      <small class="text-muted">on {{review.Date_review}}</small>
+
+    </div>
+
+    <h2><a class="article-title">Rating: {{review.product_rating}}/10</a></h2>
+
+    <p class="article-content">{{review.review_text }} </p>
+
+  </div>
+
+</article>
+{% endif %}
+{% endfor %}
+
+{% if is_paginated %}
+{% if page_obj.has_previous %}
+<a class="btn btn-outline-info mb-4" href="?page=1"> First </a>
+<a class="btn btn-outline-info mb-4" href="?page= {{ page_obj.previous_page_number}}"> Previous </a>
+{% endif %}
+{% for num in page_obj.paginator.page_range %}
+{% if page_obj.number == num %}
+<a class="btn btn-info mb-4" href="?page={{ num }}"> {{ num }}</a>
+{% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %}
+<a class="btn btn-outline-info mb-4" href="?page={{ num }}" > {{ num }} </a>
+{% endif %}
+{% endfor %}
+{% if page_obj.has_next %}
+<a class="btn btn-outline-info mb-4" href="?page={{page_obj.next_page_number }}"> Next </a>
+<a class="btn btn-outline-info mb-4" href="?page={{page_obj.paginator.num_pages }}"> Last</a>
+{% endif %}
+{% endif %}
+
+
+{% endblock content %}
+
