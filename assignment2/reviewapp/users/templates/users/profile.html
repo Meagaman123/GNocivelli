@@ -1,7 +1,7 @@
 {% extends "reviewproduct/base.html" %} 
 {% load crispy_forms_tags %} 
 {% block content %} 
-<h1> <img class = "rounded-circle article-img" src="{{Profile.profile_picture}}"/> {{user.username}} <h2>{{user.username}}</h2></h1>
+<h1> <img class = "rounded-circle article-img" src="{{Profile.profile_picture.url}}"/> {{user.username}} <h2>{{user.username}}</h2></h1>
 
 <form method ="POST" enctype="multipart/form-data">
     {%csrf_token%} 
@@ -16,7 +16,9 @@
     <div class="form-group">
         <button class="btn btn-outline-info" type="submit">
             update </button>
+            <a class="btn btn-secondary btn-sm mt-1 mb-1" href="{% url 'change_password'  %}"> change password</a>
         </div>
     </form>
+    
 {% endblock content %}
  

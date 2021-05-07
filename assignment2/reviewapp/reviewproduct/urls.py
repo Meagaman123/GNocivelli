@@ -1,6 +1,8 @@
 from django.urls import path
 from . import views
 from .views import PostDetailView, PostListView3080, PostListViewiphoneX, PostListViewryzen , PostCreateView, PostUpdateView, PostDeleteView
+from django.conf.urls import url
+
 
 urlpatterns = [
     path ('', views.home, name='reviewproduct-home'),
@@ -14,5 +16,4 @@ urlpatterns = [
     path('review/new', PostCreateView.as_view(), name='review-create'),
     path('review/<int:pk>/update/', PostUpdateView.as_view(), name='review-update'),
     path('review/<int:pk>/delete/', PostDeleteView.as_view(), name='review-delete'),
-
-]
+    path('review/password', views.change_password, name='change_password'),]

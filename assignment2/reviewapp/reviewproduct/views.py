@@ -1,8 +1,11 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from .models import Review
 from django.views.generic import ListView, DetailView , CreateView, UpdateView, DeleteView
 from django.urls import reverse
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
+from django.contrib.auth.forms import PasswordChangeForm
+from django.contrib.auth import update_session_auth_hash
+from django.contrib import messages
 
 class PostDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
         model = Review
@@ -81,4 +84,16 @@ def gtx3080 (request):
  
         return render(request, 'reviewproduct/gtx3080.html',  all_reviews)
 
-
+def change_password(request):
+        if request.method == 'POST':
+                form = PasswordChangeForm(request.user, request.POST)
+                if form.is_valid():
+                        user = form.save()
+                        update_session_auth_hash(request, user)
+                        messages.success(request, 'Your password was successfully updated!')
+                        return redirect('/profile/')
+                else:
+                        messages.error(request, 'please correct the error below.')
+        else:
+                form = PasswordChangeForm(request.user)
+        return render(request, 'reviewproduct/changepassword.html' , {'form': form})                
