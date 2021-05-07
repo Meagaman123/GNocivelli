@@ -6,11 +6,12 @@
 <body>
     <h1>Product review - Iphone X</h1>
 </body>
-<h2>Price: </h2>
-<h2>Category: </h2>
-<h2>Release date: </h2>
-<h2>Description: </h2>
+<h2>Price: 1149.99</h2>
+<h2>Category: Phone</h2>
+<h2>Release date: 2020-09-13</h2>
+<h2>Description: This is the latest CPU by AMD. Featuring the ampure 5 architecture with 12 cores and 24 threaded cores its the best price to performance cpu on the market.</h2>
 <h1>Reviews: </h1>
+<a class="btn btn-secondary btn-sm mt-1 mb-1" href="{% url 'review-create'  %}"> create review</a>
 {% for review in reviews %}
 {% if review.product.name == "IPhone X" %}
 
@@ -20,15 +21,22 @@
 
     <div class="article-metadata">
       
-      <a class="mr-2">This review is by {{review.author}}</a>
+      <a class="mr-2" href="{% url 'review-review_text' review.id %} ">This review is by {{review.author}}</a>
 
       <small class="text-muted">on {{review.Date_review}}</small>
 
     </div>
 
-    <h2><a class="article-title" href="#">Rating: {{review.product_rating}}/10</a></h2>
+    <h2><a class="article-title" >Rating: {{review.product_rating}}/10</a></h2>
 
     <p class="article-content">{{review.review_text }}</p>
+
+    {% if review.author == user %}
+    <a class="btn btn-secondary btn-sm mt-1 mb-1" href="{% url 'review-update' review.id %}"> Update</a>
+    <a class="btn btn-secondary btn-sm mt-1 mb-1" href="{% url 'review-delete' review.id %}"> Delete</a>
+    {% endif %}
+    
+
 
   </div>
 

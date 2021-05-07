@@ -7,21 +7,26 @@
     <h1>Product review - RTX 3080</h1>
 </body>
 
-<h2>Price: </h2>
-<h2>Category: </h2>
-<h2>Release date: </h2>
-<h2>Description: </h2>
+<h2>Price: 699.99</h2>
+<h2>Category: GPU </h2>
+<h2>Release date: 14/10/2020 </h2>
+<h2>Description: This is the latest graphics card by NVIDIA. featuring the latest in rtx software</h2>
 <h1>Reviews: </h1>
+<a class="btn btn-secondary btn-sm mt-1 mb-1" href="{% url 'review-create'  %}"> create review</a>
 {% for review in reviews %}
 {% if review.product.name == "rtx3080" %}
 
 <article class="media content-section">
-  <img class = "rounded-circle article-img" src="{{review.author.Profile.profile_picture}}"/>
+  {% if review.author.profile.profile_picture.url %}
+  <img class = "rounded-circle article-img" src="{{review.author.profile.profile_picture.url}}"/>
+  {% else %}
+  <img class = "rounded-circle article-img" src="theblog/images/defaultpp.png"/>
+  {% endif %}
   <div class="media-body">
 
     <div class="article-metadata">
       
-      <a class="mr-2" href="">This review is by {{review.author}}</a>
+      <a class="mr-2" href="{% url 'review-review_text' review.id %}">This review is by {{review.author}}</a>
 
       <small class="text-muted">on {{review.Date_review}}</small>
 
@@ -30,7 +35,10 @@
     <h2><a class="article-title">Rating: {{review.product_rating}}/10</a></h2>
 
     <p class="article-content">{{review.review_text }} </p>
-
+    {% if review.author == user %}
+    <a class="btn btn-secondary btn-sm mt-1 mb-1" href="{% url 'review-update' review.id %}"> Update</a>
+    <a class="btn btn-secondary btn-sm mt-1 mb-1" href="{% url 'review-delete' review.id %}"> Delete</a>
+    {% endif %}
   </div>
 
 </article>
